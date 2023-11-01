@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <title>Art Shop</title>
-</head>
-<body>
-    <header class="mb-4">
+<?php 
+echo '
+<header class="mb-4">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a href="#" class="navbar-brand">Navbar</a>
@@ -39,13 +31,5 @@
             </div>
         </nav>
     </header>
-    <main class="container">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5">
-            <div class="col bg-light border p-3">Number 1</div>
-            <div class="col bg-light border p-3">Number 2</div>
-            <div class="col bg-light border p-3">Number 3</div>
-            <div class="col bg-light border p-3">Number 4</div>
-        </div>
-    </main>
-</body>
-</html>
+'
+?>
