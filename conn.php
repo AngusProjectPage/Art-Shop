@@ -1,5 +1,5 @@
 <?php
-$servername = "devweb2023.cis.strath/phpmyadmin";
+$servername = "devweb2023.cis.strath.ac.uk";
 $username = "fmb21117";
 $password = "AhyieGhi2Eer";
 $dbname = "fmb21117";
@@ -10,5 +10,5 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$conn->close();
-?> 
+
+
