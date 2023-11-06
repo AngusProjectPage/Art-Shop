@@ -8,9 +8,9 @@
     <title>Art Shop</title>
 </head>
 <?php 
-include "conn.php";
-$sql = "SELECT name, completionDate, width, height, price, description FROM art";
-$result = $conn->query($sql);
+include_once "conn.php";
+$query = "SELECT * FROM art";
+$result = $conn->query($query);
 $conn->close();
 ?>
 <body>
@@ -21,6 +21,7 @@ $conn->close();
             if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
+                $paintingId     = $row["id"];
                 $paintingName   = $row["name"];
                 $completionDate = $row["completionDate"];
                 $width          = $row["width"];
@@ -28,30 +29,36 @@ $conn->close();
                 $price          = $row["price"];
                 $description    = $row["description"];
             ?>
-            <form action="form.php" class="col" method="get">
+            <div>
                 <div class="bg-light border p-3">
                     <p>Name:            <?php echo $paintingName ?></p>
                     <p>Completion Date: <?php echo $completionDate ?></p>
-                    <p>Width:           <?php echo $width ?></p>
-                    <p>Height:          <?php echo $height ?></p>
+                    <p>Width:           <?php echo $width . " (mm)" ?></p>
+                    <p>Height:          <?php echo $height . " (mm)"?></p>
                     <p>Price:           <?php echo "£".$price ?></p>
                     <p>Description:     <?php echo $description ?></p>
                     <div class="text-center">
-                        <button name="orderArt" class="btn btn-primary text-center w-100">Order</button>
+                        <a href="form.php?pId=<?php echo $paintingId?>" class="btn btn-primary text-center w-100">Order</a>
                     </div>
                 </div>
-            </form>
+            </div>
             <?php 
             }}
             ?>
         </div>
     </main>
+    <!--
 <footer>
     <nav class="pagination" aria-label="Art results navigation">
         <ul class="pagination">
-
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
     </nav>
 </footer>
+-->
 </body>
 </html>
