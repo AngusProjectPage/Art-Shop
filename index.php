@@ -16,7 +16,7 @@ $conn->close();
 <body>
     <?php include_once "header.php"; ?>
     <main class="container">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 h-100">
             <?php 
             if ($result->num_rows > 0) {
             // output data of each row
@@ -29,14 +29,16 @@ $conn->close();
                 $price          = $row["price"];
                 $description    = $row["description"];
             ?>
-            <div>
-                <div class="bg-light border p-3">
-                    <p>Name:            <?php echo $paintingName ?></p>
-                    <p>Completion Date: <?php echo $completionDate ?></p>
-                    <p>Width:           <?php echo $width . " (mm)" ?></p>
-                    <p>Height:          <?php echo $height . " (mm)"?></p>
-                    <p>Price:           <?php echo "£".$price ?></p>
-                    <p>Description:     <?php echo $description ?></p>
+            <div class="mb-5">
+                <div class="bg-light border p-3 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <p>Name:            <?php echo $paintingName ?></p>
+                        <p>Completion Date: <?php echo $completionDate ?></p>
+                        <p>Width:           <?php echo $width . " (mm)" ?></p>
+                        <p>Height:          <?php echo $height . " (mm)"?></p>
+                        <p>Price:           <?php echo "£".$price ?></p>
+                        <p>Description:     <?php echo $description ?></p>
+                    </div>
                     <div class="text-center">
                         <a href="form.php?pId=<?php echo $paintingId?>" class="btn btn-primary text-center w-100">Order</a>
                     </div>
