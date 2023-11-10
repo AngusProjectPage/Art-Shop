@@ -5,7 +5,7 @@
       <paths name="devweb2023">
         <serverdata>
           <mappings>
-            <mapping deploy="/Assignment2hkasnoew/" local="$PROJECT_DIR$" web="/Assignment2hkasnoew/" />
+            <mapping deploy="/Assignment2hkasnoew/wadsub2-fmb21117" local="$PROJECT_DIR$" web="/Assignment2hkasnoew/wadsub2-fmb21117" />
           </mappings>
         </serverdata>
       </paths>

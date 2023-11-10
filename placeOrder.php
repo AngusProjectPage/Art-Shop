@@ -9,10 +9,10 @@
     <title>Order Placed</title>
 </head>
 <?php
-include_once "conn.php";
+include_once "includes/conn.php";
 ?>
 <body>
-<?php include_once "header.php"; ?>
+<?php include_once "includes/header.php"; ?>
 <?php
     if(isset($_POST["placeOrder"])) {
         $artId          = $_POST["artId"];
@@ -26,7 +26,6 @@ include_once "conn.php";
 
         $query = "INSERT INTO orders VALUES ('$name', '$phoneNumber', '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
         $conn->query($query);
-    }
 ?>
 <main class="container d-flex align-items-center flex-column mt-5 pt-5">
     <div class="text-center">
@@ -39,3 +38,4 @@ include_once "conn.php";
 </main>
 </body>
 </html>
+<?php } ?>

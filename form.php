@@ -8,10 +8,10 @@
     <title>Order Form</title>
 </head>
 <?php
-include_once "conn.php"; ?>
+include_once "includes/conn.php"; ?>
 <body>
-<?php include_once "header.php"; ?>
-    <main class="container">
+<?php include_once "includes/header.php"; ?>
+    <main class="container sticky-top">
         <form action="placeOrder.php" class="mt-3 mb-4" method="post">
             <section class="mb-4">
                 <h2>Contact Information</h2>

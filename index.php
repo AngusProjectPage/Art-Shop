@@ -8,13 +8,13 @@
     <title>Art Shop</title>
 </head>
 <?php 
-include_once "conn.php";
+include_once "includes/conn.php";
 $query = "SELECT * FROM art";
 $result = $conn->query($query);
 $conn->close();
 ?>
 <body>
-    <?php include_once "header.php"; ?>
+    <?php include_once "includes/header.php"; ?>
     <main class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 h-100">
             <?php 

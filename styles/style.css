@@ -1,0 +1,9 @@
+.nav-pills li a:hover {
+    background-color: var(--bs-blue);
+}
+
+.admin-main-height {
+    height: calc(100vh - 84.666667px);
+}
+
+
