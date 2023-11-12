@@ -67,11 +67,11 @@ include_once "includes/conn.php"; ?>
                 <div class="bg-light border p-3">
                     <p>Name:            <?php echo $paintingName ?></p>
                     <p>Completion Date: <?php echo $completionDate ?></p>
-                    <p>Width:           <?php echo $width ?></p>
-                    <p>Height:          <?php echo $height ?></p>
+                    <p>Width:           <?php echo $width . " (mm)" ?></p>
+                    <p>Height:          <?php echo $height . " (mm)"?></p>
                     <p>Price:           <?php echo "£".$price ?></p>
                     <p>Description:     <?php echo $description ?></p>
-                <div>
+                </div>
             </section>
             <section>
                 <p>

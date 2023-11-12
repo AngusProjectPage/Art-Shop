@@ -1,7 +1,6 @@
-<?php include "conn.php"; ?>
 <?php session_start();?>
+<?php include "conn.php"; ?>
 <?php
-
   if(isset($_POST['submitLogin'])) {
       $password = $_POST['password'];
       $password = $conn->real_escape_string($password);
@@ -19,7 +18,7 @@
       $encryptedPassword = crypt($password, $hashAndSalt);
 
       if(hash_equals($dbUserPassword, $encryptedPassword)) {
-          $_SESSION['user_role'] = "admin";
+          $_SESSION['userRole'] = "admin";
           header("Location: ../admin.php");
       } else {
           header("Location: ../index.php");

@@ -3,7 +3,7 @@ echo '
 <header class="mb-4 sticky-top">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container  justify-content-between">
-                <a href="./index.php" class="navbar-brand"><img src="./Images/logo2.png" alt="Art shop logo" width="61.33" height="58.6666" class="d-inline-block align-text-center">Art Shop</a>
+                <a href="./index.php" class="navbar-brand"><img src="./Images/logo2.png" alt="Art shop logo" width="61" height="59" class="d-inline-block align-text-center">Art Shop</a>
                 <button type="button" 
                         data-bs-toggle="collapse" 
                         data-bs-target="#navbarNav" 
