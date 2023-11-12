@@ -12,37 +12,44 @@ include_once "includes/conn.php"; ?>
 <body>
 <?php include_once "includes/header.php"; ?>
     <main class="container">
-        <form action="placeOrder.php" class="mt-3 mb-5" method="post">
+        <form id="placeOrder" action="placeOrder.php" class="mt-3 mb-5" method="post">
             <section class="mb-4">
                 <h2>Contact Information</h2>
                 <p>Required fields are followed by <span aria-label="required">*</span>.</p>
                 <p class="form-group">
                     <label for="name">Name: <span aria-label="required">*</span></label>
                     <input name="name" type="text" id="name" class="form-control">
+                    <small></small>
                 </p>
                 <p class="form-group">
                     <label for="phoneNumber">Phone Number: <span aria-label="required">*</span></label>
                     <input name="phoneNumber" type="text" id="phoneNumber" class="form-control">
+                    <small></small>
                 </p>
                 <p class="form-group">           
                     <label for="email">Email: <span aria-label="required">*</span></label>
                     <input name="email" type="text" id="email" class="form-control">
+                    <small></small>
                 </p>
                 <p class="form-group">
                     <label for="postcode">Postcode: <span aria-label="required">*</span></label>
                     <input name="postcode" type="text" id="postcode" class="form-control">
+                    <small></small>
                 </p>
                 <p class="form-group">
                     <label for="addressLine1">Address Line 1: <span aria-label="required">*</span></label>
                     <input name="addressLine1" type="text" id="addressLine1" class="form-control">
+                    <small></small>
                 </p>
                 <p class="form-group">
                     <label for="addressLine2">Address Line 2: <span aria-label="required">*</span></label>
                     <input name="addressLine2" type="text" id="addressLine2" class="form-control">
+                    <small></small>
                 </p>
                 <p class="form-group">
                     <label for="city">City: <span aria-label="required">*</span></label>
                     <input name="city" type="text" id="city" class="form-control">
+                    <small></small>
                 </p>
             </section>
             <section class="mb-3">
@@ -80,5 +87,6 @@ include_once "includes/conn.php"; ?>
             </section>              
         </form>
     </main>
+<script src="js/app.js"></script>
 </body>
 </html>
