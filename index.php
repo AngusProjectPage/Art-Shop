@@ -28,6 +28,8 @@ $conn->close();
                 $height         = $row["height"];
                 $price          = $row["price"];
                 $description    = $row["description"];
+                $available      = $row["available"];
+                if($available == "1") {
             ?>
             <div class="mb-5">
                 <div class="bg-light border p-3 h-100 d-flex flex-column justify-content-between">
@@ -45,7 +47,7 @@ $conn->close();
                 </div>
             </div>
             <?php 
-            }}
+            }}}
             ?>
         </div>
     </main>

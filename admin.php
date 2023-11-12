@@ -43,13 +43,20 @@ include_once "includes/removeOrder.php";
 if (!isset($_SESSION['userRole'])) {
     ?>
 <main class="container mt-5">
-    <form action="./includes/login.php" class="mt-3 mb-4" method="post">
+    <form id="login" action="./includes/login.php" class="mt-3 mb-4" method="post">
         <section class="mb-4">
             <h2>Admin Login</h2>
             <p>Required fields are followed by <span aria-label="required">*</span>.</p>
             <p class="form-group">
-                <label for="password">Password: <span aria-label="required">*</span></label>
-                <input name="password" type="password" id="password" class="form-control">
+                <?php if(isset($_GET['passwordIncorrect'])) { ?>
+                    <label class="text-danger" for="password">Password: <span aria-label="required">*</span></label>
+                    <input name="password" type="password" id="password" class="form-control border-error">
+                    <small class="text-danger">Incorrect Password: Please Try Again</small>
+                <?php } else { ?>
+                    <label for="password">Password: <span aria-label="required">*</span></label>
+                    <input name="password" type="password" id="password" class="form-control">
+                    <small></small>
+                <?php } ?>
             </p>
         </section>
         <section>
@@ -77,6 +84,6 @@ else { ?>
         </main>
     </div>
 <?php } ?>
-
+<script src="js/adminLogin.js"></script>
 </body>
 </html>

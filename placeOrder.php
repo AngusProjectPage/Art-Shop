@@ -13,8 +13,9 @@ include_once "includes/conn.php";
 ?>
 <body>
 <?php include_once "includes/header.php"; ?>
+<main class="container d-flex align-items-center flex-column mt-5 pt-5">
 <?php
-    if(isset($_POST["placeOrder"])) {
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $artId          = $_POST["artId"];
         $name           = $_POST["name"];
         $phoneNumber    = $_POST["phoneNumber"];
@@ -24,18 +25,62 @@ include_once "includes/conn.php";
         $addressLine2   = $_POST["addressLine2"];
         $city           = $_POST["city"];
 
-        $query = "INSERT INTO orders VALUES ('$name', '$phoneNumber', '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
-        $conn->query($query);
-?>
-<main class="container d-flex align-items-center flex-column mt-5 pt-5">
-    <div class="text-center">
-        <i class="fa-regular fa-circle-check fa-6x text-success"></i>
-        <div>
-            <h1>Thank You!</h1>
-            <p>Your order has been successfully placed</p>
+        // Escape Strings
+        $name = $conn->real_escape_string($name);
+        $phoneNumber = $conn->real_escape_string($phoneNumber);
+        $email = $conn->real_escape_string($email);
+        $postcode = $conn->real_escape_string($postcode);
+        $addressLine1 = $conn->real_escape_string($addressLine1);
+        $addressLine2 = $conn->real_escape_string($addressLine2);
+        $city = $conn->real_escape_string($city);
+
+        $nameExp        = '/^[A-Za-z]+ [A-Za-z]*$/';
+        $phoneNumberExp = '/^(\+|\d)\d*$/';
+        $emailExp       = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+        $postcodeExp    = '/^[a-zA-Z\d]+\s[a-zA-Z\d]*$/';
+        $addressExp     = '/^$|\d\s[a-zA-Z\s]*$/';
+        $cityExp        = '/^[A-Z]?[a-z]*$/';
+
+        $nameResult              = preg_match($nameExp, $name);
+        $phoneNumberResult       = preg_match($phoneNumberExp, $phoneNumber);
+        $emailResult             = preg_match($emailExp, $email);
+        $postcodeResult          = preg_match($postcodeExp, $postcode);
+        $addressLine1Result      = preg_match($addressExp, $addressLine1);
+        $addressLine2Result      = preg_match($addressExp, $addressLine2);
+        $cityResult              = preg_match($cityExp, $city);
+
+        if(empty($addressLine2)) {
+            $addressLine2 = "null";
+        }
+
+        if($nameResult && $phoneNumberResult && $emailResult && $postcodeResult && $addressLine1Result && $addressLine2Result && $cityResult) {
+            $query1 = "INSERT INTO orders VALUES ('$name', $phoneNumber, '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
+            $query2 = "UPDATE art SET available = 0 WHERE id = $artId;";
+            $conn->query($query1);
+            $conn->query($query2);
+        ?>
+        <div class="text-center">
+            <i class="fa-regular fa-circle-check fa-6x text-success"></i>
+            <div>
+                <h1>Thank You!</h1>
+                <p>Your order has been successfully placed</p>
+            </div>
         </div>
-    </div>
+        <?php
+        }
+    else {
+        ?>
+        <div class="text-center">
+            <i class="fa-solid fa-exclamation fa-6x text-danger"></i>
+            <div>
+                <h1>Something Went Wrong</h1>
+                <p>Please Try Again</p>
+            </div>
+        </div>
+        <?php
+    }
+}
+?>
 </main>
 </body>
 </html>
-<?php } ?>

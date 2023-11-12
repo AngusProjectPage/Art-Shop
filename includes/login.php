@@ -1,8 +1,10 @@
 <?php session_start();?>
 <?php include "conn.php"; ?>
 <?php
-  if(isset($_POST['submitLogin'])) {
+  if($_SERVER['REQUEST_METHOD'] === "POST") {
       $password = $_POST['password'];
+
+      //Escape String
       $password = $conn->real_escape_string($password);
 
       $query = "SELECT password FROM admin";
@@ -19,9 +21,7 @@
 
       if(hash_equals($dbUserPassword, $encryptedPassword)) {
           $_SESSION['userRole'] = "admin";
-          header("Location: ../admin.php");
-      } else {
-          header("Location: ../index.php");
       }
+      header("Location: ../admin.php?passwordIncorrect");
   }
 

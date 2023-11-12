@@ -6,6 +6,24 @@
     height: calc(100vh - 84.666667px);
 }
 
+.border-valid {
+    border-color: #198754;
+}
+
+.border-error {
+    border-color: #dc3545;
+}
+
+.border-valid:checked, .border-valid:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+}
+
+.border-error:checked, .border-error:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgb(220, 53, 69, 0.25) !important;
+}
+
 @media only screen and (max-width: 573px) {
     .sm-screen-nav {
         min-width: 47px !important;
