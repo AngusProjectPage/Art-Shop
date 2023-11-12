@@ -18,7 +18,7 @@ session_start();
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container  justify-content-between">
-            <a href="index.php" class="navbar-brand"><img src="./Images/logo2.png" alt="Art shop logo" width="61.33" height="58.6666" class="d-inline-block align-text-center">Art Shop</a>
+            <a href="./index.php" class="navbar-brand"><img src="./Images/logo2.png" alt="Art shop logo" width="61.33" height="58.6666" class="d-inline-block align-text-center">Art Shop</a>
             <button type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNav"
@@ -30,32 +30,20 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="admin.php" class="nav-link active">Admin Login</a>
+                        <a href="./admin.php" class="nav-link">Admin Login</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-<!-- Side navigation bar -->
-<div class="row gx-0 admin-main-height mw-100">
-    <?php include_once "./includes/sidenav.php";?>
-    <main class="col-11 col-sm-11 col-md-9 col-lg-8 pt-5 ps-3 pe-3 table-responsive main-content">
-        <?php if(isset($_GET['edit']) && ($_GET['edit'] == "True")) {
-                include_once "./includes/editOrder.php";
-             }
-            else {
-                include_once "./includes/addPainting.php";
-             } ?>
-    </main>
-</div>
 
 <?php
 // If not logged in display login form
-if (isset($_SESSION['user_role'])) {
+if (!isset($_SESSION['user_role'])) {
     ?>
 <main class="container mt-5">
-    <form action="admin.php" class="mt-3 mb-4" method="post">
+    <form action="./includes/login.php" class="mt-3 mb-4" method="post">
         <section class="mb-4">
             <h2>Admin Login</h2>
             <p>Required fields are followed by <span aria-label="required">*</span>.</p>
@@ -74,7 +62,20 @@ if (isset($_SESSION['user_role'])) {
 <?php }
 // Else display admin features
 else { ?>
+    <div class="row gx-0 admin-main-height mw-100">
+        <!-- Side navigation bar -->
+        <?php include_once "./includes/sidenav.php";?>
 
+        <!-- Admin main content -->
+        <main class="col-11 col-sm-11 col-md-9 col-lg-8 pt-5 ps-3 pe-3 table-responsive main-content">
+            <?php if(isset($_GET['edit']) && ($_GET['edit'] == "True")) {
+                include_once "./includes/editOrder.php";
+            }
+            else {
+                include_once "./includes/addPainting.php";
+            } ?>
+        </main>
+    </div>
 <?php } ?>
 
 </body>
