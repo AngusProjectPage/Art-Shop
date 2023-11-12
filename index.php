@@ -29,19 +29,16 @@ $conn->close();
                 $price          = $row["price"];
                 $description    = $row["description"];
                 $available      = $row["available"];
+                $imageBLOB      = $row["image"];
                 if($available == "1") {
             ?>
             <div class="mb-5">
-                <div class="bg-light border p-3 h-100 d-flex flex-column justify-content-between">
-                    <div>
-                        <p>Name:            <?php echo $paintingName ?></p>
-                        <p>Completion Date: <?php echo $completionDate ?></p>
-                        <p>Width:           <?php echo $width . " (mm)" ?></p>
-                        <p>Height:          <?php echo $height . " (mm)"?></p>
-                        <p>Price:           <?php echo "£".$price ?></p>
-                        <p>Description:     <?php echo $description ?></p>
+                <div class="card bg-light border p-3 h-100 d-flex flex-column justify-content-between">
+                    <div class="mb-1">
+                        <h5 class="cardTitle">Name: <?php echo $paintingName ?></h5>
                     </div>
-                    <div class="text-center">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($imageBLOB); ?>" class="img-thumbnail" alt="image">
+                    <div class="text-center mt-3">
                         <a href="form.php?pId=<?php echo $paintingId?>" class="btn btn-primary text-center w-100">Order</a>
                     </div>
                 </div>
@@ -51,18 +48,13 @@ $conn->close();
             ?>
         </div>
     </main>
-    <!--
 <footer>
-    <nav class="pagination" aria-label="Art results navigation">
-        <ul class="pagination">
+    <nav aria-label="Art results navigation">
+        <ul class="pagination justify-content-center pb-3">
             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
     </nav>
 </footer>
--->
 </body>
 </html>

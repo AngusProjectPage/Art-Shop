@@ -14,7 +14,7 @@ include_once "includes/conn.php"; ?>
 <?php include_once "includes/header.php"; ?>
     <main class="container">
         <form id="placeOrder" action="placeOrder.php" class="mt-3 mb-5" method="post">
-            <section class="mb-4">
+            <section class="mb-5">
                 <h2>Contact Information</h2>
                 <p>Required fields are followed by <span aria-label="required">*</span>.</p>
                 <p class="form-group">
@@ -53,22 +53,23 @@ include_once "includes/conn.php"; ?>
                     <small></small>
                 </p>
             </section>
-            <section class="mb-3">
+            <section class="mb-5">
                 <h2>Painting Details</h2>
                 <?php
                 $paintingId = $_GET["pId"];
-                $query = "SELECT name, completionDate, width, height, price, description FROM art WHERE id = $paintingId LIMIT 1";
+                $query = "SELECT name, completionDate, width, height, price, description, image FROM art WHERE id = $paintingId LIMIT 1";
                 $result = $conn->query($query);
                 $conn->close();
                 if ($result->num_rows > 0) {
                     // output data of each row
                     $row = $result->fetch_assoc();
-                    $paintingName = $row["name"];
+                    $paintingName   = $row["name"];
                     $completionDate = $row["completionDate"];
-                    $width = $row["width"];
-                    $height = $row["height"];
-                    $price = $row["price"];
-                    $description = $row["description"];
+                    $width          = $row["width"];
+                    $height         = $row["height"];
+                    $price          = $row["price"];
+                    $description    = $row["description"];
+                    $imageBLOB      = $row["image"];
                 }
                 ?>
                 <input type="hidden" name="artId" value="<?php echo $paintingId?>">
@@ -80,6 +81,10 @@ include_once "includes/conn.php"; ?>
                     <p>Price:           <?php echo "£".$price ?></p>
                     <p>Description:     <?php echo $description ?></p>
                 </div>
+            </section>
+            <section class="mb-3">
+                <h2>Painting</h2>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($imageBLOB); ?>" class="img-fluid" alt="Painting displayed">
             </section>
             <section>
                 <p>
