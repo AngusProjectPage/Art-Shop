@@ -13,8 +13,25 @@ include_once "includes/conn.php";
 ?>
 <body>
 <?php include_once "includes/header.php"; ?>
+<main class="container d-flex align-items-center flex-column mt-5 pt-5">
 <?php
 if(isset($_POST["submitPainting"])) {
+    $errors= array();
+    $fileName = $_FILES['image']['name'];
+    $fileSize = $_FILES['image']['size'];
+    $fileTmp  = $_FILES['image']['tmp_name'];
+    $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+    $extensions= array("jpeg","jpg","png");
+
+    if(in_array($fileExtension,$extensions) === false){
+        $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+    }
+
+    if($fileSize > 1000000){
+        $errors[]='File size must not exceed 1Mb';
+    }
+
     $name           = $_POST["paintingName"];
     $completionDate = $_POST["completionDate"];
     $width          = $_POST["width"];
@@ -22,10 +39,14 @@ if(isset($_POST["submitPainting"])) {
     $price          = $_POST["price"];
     $description    = $_POST["description"];
 
-    $query = "INSERT INTO art VALUES (null, '$name', '$completionDate', '$width', '$height', '$price', '$description');";
-    $conn->query($query);
-?>
-<main class="container d-flex align-items-center flex-column mt-5 pt-5">
+    if(empty($errors)==true){
+        $image = file_get_contents($fileTmp);
+        $image = $conn->real_escape_string($image);
+
+        $query = "INSERT INTO art VALUES (null, '$name', '$completionDate', '$width', '$height', '$price', '$description', 1, '$image');";
+        $conn->query($query);
+
+        ?>
     <div class="text-center">
         <i class="fa-regular fa-circle-check fa-6x text-success"></i>
         <div>
@@ -33,7 +54,25 @@ if(isset($_POST["submitPainting"])) {
             <p>Painting <?php echo $name?> has been added to the database</p>
         </div>
     </div>
+   <?php }
+    else { ?>
+    <div class="text-center">
+        <i class="fa-solid fa-exclamation fa-6x text-danger"></i>
+        <div>
+            <h1>Something Went Wrong</h1>
+            <p>Please Try Again</p>
+        </div>
+    </div>
+<?php }} else { ?>
+    <div class="text-center">
+        <i class="fa-solid fa-exclamation fa-6x text-danger"></i>
+        <div>
+            <h1>Something Went Wrong</h1>
+            <p>Please Try Again</p>
+        </div>
+    </div>
+<?php } ?>
 </main>
 </body>
 </html>
-<?php } ?>
+

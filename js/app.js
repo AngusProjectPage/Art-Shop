@@ -187,6 +187,13 @@ const checkCity = () => {
     return valid;
 }
 
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // This adds a smooth animation to the scrolling
+    });
+}
+
 form.addEventListener('submit', function (e) {
     e.preventDefault(); // This prevents the form from submitting
     let isNameValid = checkName();
@@ -207,6 +214,10 @@ form.addEventListener('submit', function (e) {
 
     if(isFormValid) {
         form.submit();
+    }
+    else {
+        console.log("hello");
+        scrollToTop();
     }
 });
 

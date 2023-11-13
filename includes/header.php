@@ -17,6 +17,9 @@ echo '
                         <li class="nav-item">
                             <a href="./admin.php" class="nav-link">Admin Login</a>
                         </li>
+                        <li>
+                            <a href="./basket.php" class="nav-link">Basket</a>
+                        </li>
                     </ul>
                 </div>
             </div>
