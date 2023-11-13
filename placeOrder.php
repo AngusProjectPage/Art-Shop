@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@ include_once "includes/conn.php";
 <main class="container d-flex align-items-center flex-column mt-5 pt-5">
 <?php
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $artId          = $_POST["artId"];
+        $artId          = isset($_POST["artId"]) ? $_POST["artId"] : "";
         $name           = $_POST["name"];
         $phoneNumber    = $_POST["phoneNumber"];
         $email          = $_POST["email"];
@@ -54,32 +55,28 @@ include_once "includes/conn.php";
         }
 
         if($nameResult && $phoneNumberResult && $emailResult && $postcodeResult && $addressLine1Result && $addressLine2Result && $cityResult) {
-            $query1 = "INSERT INTO orders VALUES ('$name', $phoneNumber, '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
-            $query2 = "UPDATE art SET available = 0 WHERE id = $artId;";
-            $conn->query($query1);
-            $conn->query($query2);
-        ?>
-        <div class="text-center">
-            <i class="fa-regular fa-circle-check fa-6x text-success"></i>
-            <div>
-                <h1>Thank You!</h1>
-                <p>Your order has been successfully placed</p>
-            </div>
-        </div>
-        <?php
+            if(!isset($_SESSION['cart'])) {
+                $query1 = "INSERT INTO orders VALUES ('$name', $phoneNumber, '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
+                $query2 = "UPDATE art SET available = 0 WHERE id = $artId;";
+                $conn->query($query1);
+                $conn->query($query2);
+            }
+            else {
+                $idArray = $_SESSION['cart'];
+                foreach($idArray as $artId) {
+                    $query1 = "INSERT INTO orders VALUES ('$name', $phoneNumber, '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
+                    $query2 = "UPDATE art SET available = 0 WHERE id = $artId;";
+                    $conn->query($query1);
+                    $conn->query($query2);
+                }
+            }
+            unset($_SESSION['cart']);
+            header("Location: ../orderSuccess.php");
         }
-    else {
-        ?>
-        <div class="text-center">
-            <i class="fa-solid fa-exclamation fa-6x text-danger"></i>
-            <div>
-                <h1>Something Went Wrong</h1>
-                <p>Please Try Again</p>
-            </div>
-        </div>
-        <?php
+        else {
+            header("Location: ../orderFailure.php");
+        }
     }
-}
 ?>
 </main>
 </body>

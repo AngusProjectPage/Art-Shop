@@ -55,10 +55,10 @@ include_once "./includes/conn.php"; ?>
                     <small></small>
                 </p>
             </section>
-            <section class="mb-5">
                 <?php
                 if(!isset($_SESSION['cart'])) {
                 ?>
+                    <section class="mb-5">
                     <h2>Painting Details</h2>
                     <?php
                     $paintingId = $_GET["pId"];
@@ -87,18 +87,49 @@ include_once "./includes/conn.php"; ?>
                         <p>Description:     <?php echo $description ?></p>
                     </div>
                 </section>
+                <input type="hidden" name="artId" value="<?php echo $paintingId ?>">
                 <section class="mb-3">
                     <h2>Painting</h2>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($imageBLOB); ?>" class="img-fluid" alt="Painting displayed">
                 </section>
             <?php }
                 else { ?>
+                    <section class="mb-5">
+                        <h2>Painting Details</h2>
+                        <?php
+                        $idString = '';
+                        $idArray = $_SESSION['cart'];
+                        $idString = implode(",", $idArray);
 
-
-
-
-               <?php }?>
-            <section>
+                        $idString = '(' . $idString . ')';
+                        $query = "SELECT name, completionDate, width, height, price, description, image FROM art WHERE id IN $idString";
+                        $result = $conn->query($query);
+                        $conn->close();
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                // output data of each row
+                                $paintingName = $row["name"];
+                                $completionDate = $row["completionDate"];
+                                $width = $row["width"];
+                                $height = $row["height"];
+                                $price = $row["price"];
+                                $description = $row["description"];
+                                $imageBLOB = $row["image"];
+                        ?>
+                        <div class="row">
+                            <div class="border bg-light p-3 col-6">
+                                <h4>Name:            <?php echo $paintingName ?></h4>
+                                <h4>Completion Date: <?php echo $completionDate ?></h4>
+                                <h4>Width:           <?php echo $width . " (mm)" ?></h4>
+                                <h4>Height:          <?php echo $height . " (mm)"?></h4>
+                                <h4>Price:           <?php echo "£".$price ?></h4>
+                                <h4>Description:     <?php echo $description ?></h4>
+                            </div>
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($imageBLOB); ?>" class="img-thumbnail col-6" alt="Painting displayed">
+                        </div>
+                    </section>
+               <?php }}}?>
+            <section class="mt-3">
                 <p>
                   <button type="submit" name="placeOrder" class="btn btn-primary">Place Order</button>
                 </p>

@@ -62,7 +62,17 @@ $count = ceil($count / $perPage); // This gives the number of pages
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($imageBLOB); ?>" class="img-thumbnail" alt="image">
                     <div class="text-center mt-3 d-flex justify-content-around">
                         <a href="./basket.php?pId=<?php echo $paintingId?>" class="btn btn-primary text-center w-50 me-3 <?php echo $maxBasket ?>">Order</a>
-                        <a href="./index.php?pId=<?php echo $paintingId?>" class="btn btn-secondary text-center w-50 <?php echo $maxBasket ?>">Add to basket</a>
+                        <a href="./index.php?pId=<?php echo $paintingId?>" class="btn btn-secondary text-center w-50 <?php if (isset($_GET['pId'])) {
+                            if(isset($_SESSION['cart'])) {
+                                $idArray = $_SESSION['cart'];
+                                foreach($idArray as $artId) {
+                                    if ($artId === $_GET['pId']) {
+                                        echo "disabled";
+                                        break;
+                                    }
+                                }
+                            }
+                        } echo $maxBasket ?>">Add to basket</a>
                     </div>
                 </div>
             </div>

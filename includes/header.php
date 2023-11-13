@@ -1,4 +1,5 @@
 <?php
+// Updates basket variable with a max of nine items
 if(isset($_GET['pId'])) {
     $pId = $_GET['pId'];
     if(isset($_SESSION['cart'])) {
