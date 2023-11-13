@@ -24,6 +24,17 @@
     box-shadow: 0 0 0 0.2rem rgb(220, 53, 69, 0.25) !important;
 }
 
+.numElements {
+    position: relative !important;
+}
+
+.numElements > span {
+    position: absolute !important;
+    top:-9px;
+    right:-5px;
+    color: var(--bs-primary);
+}
+
 @media only screen and (max-width: 573px) {
     .sm-screen-nav {
         min-width: 47px !important;

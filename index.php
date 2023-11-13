@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="./styles/style.css" rel="stylesheet">
     <title>Art Shop</title>
 </head>
 <?php
@@ -58,8 +60,9 @@ $count = ceil($count / $perPage); // This gives the number of pages
                         <h5 class="cardTitle">Name: <?php echo $paintingName ?></h5>
                     </div>
                     <img src="data:image/jpeg;base64,<?php echo base64_encode($imageBLOB); ?>" class="img-thumbnail" alt="image">
-                    <div class="text-center mt-3">
-                        <a href="form.php?pId=<?php echo $paintingId?>" class="btn btn-primary text-center w-100">Order</a>
+                    <div class="text-center mt-3 d-flex justify-content-around">
+                        <a href="./basket.php?pId=<?php echo $paintingId?>" class="btn btn-primary text-center w-50 me-3 <?php echo $maxBasket ?>">Order</a>
+                        <a href="./index.php?pId=<?php echo $paintingId?>" class="btn btn-secondary text-center w-50 <?php echo $maxBasket ?>">Add to basket</a>
                     </div>
                 </div>
             </div>
