@@ -1,0 +1,16 @@
+{
+  "name": "wadsub2-fmb21117",
+  "version": "1.0.0",
+  "description": "Template for bootstrap",
+  "main": "index.js",
+  "scripts": {
+    "sass:build": "sass --no-source-map scss:css",
+    "sass:watch": "sass --no-source-map --watch scss:css"
+  },
+  "author": "Angus Duffy",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "sass": "^1.69.5"
+  }
+}

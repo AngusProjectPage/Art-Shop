@@ -1,0 +1,54 @@
+.nav-pills li a:hover {
+  background-color: blue;
+}
+
+.admin-main-height {
+  height: calc(100vh - 84.666667px);
+}
+
+.border-valid {
+  border-color: #198754;
+}
+
+.border-error {
+  border-color: #dc3545;
+}
+
+.border-valid:checked, .border-valid:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+}
+
+.border-error:checked, .border-error:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.numElements {
+  position: relative !important;
+}
+
+.numElements > span {
+  position: absolute !important;
+  background: #e76f51;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 14px;
+  top: -21px;
+  right: -15px;
+  color: #2A9D8F;
+}
+
+@media only screen and (max-width: 573px) {
+  .sm-screen-nav {
+    min-width: 47px !important;
+  }
+  .main-content {
+    padding-left: 0 !important;
+  }
+}
+@media only screen and (min-width: 1298px) {
+  .main-content {
+    margin-left: 3rem;
+  }
+}
