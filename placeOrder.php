@@ -55,13 +55,6 @@ include_once "includes/conn.php";
         }
 
         if($nameResult && $phoneNumberResult && $emailResult && $postcodeResult && $addressLine1Result && $addressLine2Result && $cityResult) {
-            if(!isset($_SESSION['cart'])) {
-                $query1 = "INSERT INTO orders VALUES ('$name', $phoneNumber, '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
-                $query2 = "UPDATE art SET available = 0 WHERE id = $artId;";
-                $conn->query($query1);
-                $conn->query($query2);
-            }
-            else {
                 $idArray = $_SESSION['cart'];
                 foreach($idArray as $artId) {
                     $query1 = "INSERT INTO orders VALUES ('$name', $phoneNumber, '$email', '$postcode', '$addressLine1', '$addressLine2', '$city', $artId);";
@@ -69,12 +62,11 @@ include_once "includes/conn.php";
                     $conn->query($query1);
                     $conn->query($query2);
                 }
-            }
             unset($_SESSION['cart']);
-            header("Location: ../orderSuccess.php");
+            header("Location: ./orderSuccess.php");
         }
         else {
-            header("Location: ../orderFailure.php");
+            header("Location: ./orderFailure.php");
         }
     }
 ?>

@@ -3,34 +3,23 @@
 if(isset($_GET['pId'])) {
     $pId = $_GET['pId'];
     if(isset($_SESSION['cart'])) {
-        $numElements = sizeof($_SESSION['cart']) + 1;
+        $numElements = sizeof($_SESSION['cart']);
         if($numElements < 9) {
+            $numElements = sizeof($_SESSION['cart']) + 1;
             array_push($_SESSION['cart'], $pId);
-            $maxBasket = '';
-        }
-        else {
-            $maxBasket = 'disabled';
         }
     }
     else {
         $_SESSION['cart'] = array($pId);
         $numElements = 1;
-        $maxBasket = '';
     }
 }
 else {
     if(!isset($_SESSION['cart'])) {
-        $maxBasket = '';
         $numElements = 0;
     }
     else {
-        $numElements = sizeof($_SESSION['cart']) + 1;
-        if($numElements < 9) {
-            $maxBasket = '';
-        }
-        else {
-            $maxBasket = 'disabled';
-        }
+        $numElements = sizeof($_SESSION['cart']);
     }
 }
 echo '
@@ -54,6 +43,14 @@ echo '
                         <li class="nav-item">
                             <a href="./admin.php" class="nav-link">Admin Login</a>
                         </li>
+                        ';
+                        if(isset($_SESSION['cart'])) {
+                        echo '                        
+                            <li class="nav-item">
+                                <a href="./destroySession.php" class="nav-link">Reset Basket!</a>
+                            </li>';
+                            }
+                        echo '
                     </ul>
                 </div>
             </div>

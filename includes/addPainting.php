@@ -9,7 +9,7 @@ echo '
             <input name="paintingName" type="text" id="paintingName" class="form-control">
         </p>
         <p class="form-group">
-            <label for="completionDate">Completion Date: <span aria-label="required">*</span></label>
+            <label for="completionDate">Completion Date: (YY:MM:DD) <span aria-label="required">*</span></label>
             <input name="completionDate" type="text" id="completionDate" class="form-control">
         </p>
         <p class="form-group">
