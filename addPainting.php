@@ -44,8 +44,12 @@ if(isset($_POST["submitPainting"])) {
         $image = $conn->real_escape_string($image);
 
         $query = "INSERT INTO art VALUES (null, '$name', '$completionDate', '$width', '$height', '$price', '$description', 1, '$image');";
-        $conn->query($query);
+        $result = !$conn->query($query);
 
+        // This will only work if the server turns off errors
+        if(!$result === false) {
+            header("Location: ./orderFailure.php");
+        }
         ?>
     <div class="text-center">
         <i class="fa-regular fa-circle-check fa-6x text-success"></i>
