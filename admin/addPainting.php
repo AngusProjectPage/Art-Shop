@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Add Painting</title>
 </head>
 <?php
-include_once "includes/conn.php";
+require_once "../includes/conn.php";
+require_once "../includes/numElements.php";
 ?>
 <body>
-<?php include_once "includes/header.php"; ?>
+<?php require_once "./includes/header.php"; ?>
+
 <main class="container d-flex align-items-center flex-column mt-5 pt-5">
 <?php
 if(isset($_POST["submitPainting"])) {
@@ -48,7 +50,7 @@ if(isset($_POST["submitPainting"])) {
 
         // This will only work if the server turns off errors
         if(!$result === false) {
-            header("Location: ./orderFailure.php");
+            header("Location: ../orderFailure.php");
         }
         ?>
     <div class="text-center">

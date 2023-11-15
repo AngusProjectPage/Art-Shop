@@ -1,5 +1,26 @@
+#remove-order {
+  color: var(--bs-secondary) !important;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .open > .dropdown-toggle.btn-secondary {
+  background-color: var(--bs-light) !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .open > .dropdown-toggle.btn-primary {
+  background-color: var(--bs-primary-text-emphasis) !important;
+}
+
 .nav-pills li a:hover {
-  background-color: blue;
+  background-color: var(--bs-primary);
+  color: var(--bs-white) !important;
+}
+
+.nav-link:hover, .nav-link:focus, .nav-link:active, .open > .dropdown-toggle.nav-link {
+  color: var(--bs-primary) !important;
+}
+
+.basket-reset:hover, .basket-reset:focus, .basket-reset:active, .basket-reset:hover, .open > .dropdown-toggle.basket-reset {
+  color: var(--bs-danger) !important;
 }
 
 .admin-main-height {

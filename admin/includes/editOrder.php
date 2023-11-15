@@ -38,7 +38,7 @@
                     <td>$addressLine1</td>
                     <td>$addressLine2</td>
                     <td>$city</td>
-                    <td><a href='./admin.php?artId=$artId&edit=True' class='link-underline-danger link-underline-opacity-0 link-underline-opacity-100-hover'>Remove Order</a></td>
+                    <td><a href='./admin.php?artId=$artId&edit=True' class='link-underline-danger link-underline-opacity-0 link-underline-opacity-100-hover' id='remove-order'>Remove Order</a></td>
                 </tr>
                 ";
             }

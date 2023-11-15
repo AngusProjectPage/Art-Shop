@@ -2,11 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <?php require_once "includes/head.php"; ?>
     <title>Order Placed</title>
 </head>
 <?php
@@ -27,27 +23,29 @@ include_once "includes/conn.php";
         $city           = $_POST["city"];
 
         // Escape Strings
-        $name = $conn->real_escape_string($name);
-        $phoneNumber = $conn->real_escape_string($phoneNumber);
-        $email = $conn->real_escape_string($email);
-        $postcode = $conn->real_escape_string($postcode);
+        $name         = $conn->real_escape_string($name);
+        $phoneNumber  = $conn->real_escape_string($phoneNumber);
+        $email        = $conn->real_escape_string($email);
+        $postcode     = $conn->real_escape_string($postcode);
         $addressLine1 = $conn->real_escape_string($addressLine1);
         $addressLine2 = $conn->real_escape_string($addressLine2);
-        $city = $conn->real_escape_string($city);
+        $city         = $conn->real_escape_string($city);
 
+        // Run Regular Expression match
         $nameExp        = '/^[A-Za-z]+ [A-Za-z]*$/';
         $phoneNumberExp = '/^(\+|\d)\d*$/';
         $emailExp       = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
         $postcodeExp    = '/^[a-zA-Z\d]+\s[a-zA-Z\d]*$/';
-        $addressExp     = '/^$|\d\s[a-zA-Z\s]*$/';
+        $address1Exp    = '/^\d*\/?\d*\s?[a-zA-Z\s]*$/';
+        $address2Exp    = '/^$|\d*\/?\d*\s?|[a-zA-Z\s]*$/';
         $cityExp        = '/^[A-Z]?[a-z]*$/';
 
         $nameResult              = preg_match($nameExp, $name);
         $phoneNumberResult       = preg_match($phoneNumberExp, $phoneNumber);
         $emailResult             = preg_match($emailExp, $email);
         $postcodeResult          = preg_match($postcodeExp, $postcode);
-        $addressLine1Result      = preg_match($addressExp, $addressLine1);
-        $addressLine2Result      = preg_match($addressExp, $addressLine2);
+        $addressLine1Result      = preg_match($address1Exp, $addressLine1);
+        $addressLine2Result      = preg_match($address2Exp, $addressLine2);
         $cityResult              = preg_match($cityExp, $city);
 
         if(empty($addressLine2)) {

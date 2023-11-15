@@ -1,5 +1,5 @@
 <?php session_start();?>
-<?php include "conn.php"; ?>
+<?php include "../../includes/conn.php"; ?>
 <?php
   if($_SERVER['REQUEST_METHOD'] === "POST") {
       $password = $_POST['password'];

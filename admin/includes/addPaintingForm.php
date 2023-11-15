@@ -1,6 +1,4 @@
-<?php
-echo '
-<form action="addPainting.php" enctype="multipart/form-data" class="mt-3 mb-5" method="post">
+<form action="./addPainting.php" enctype="multipart/form-data" class="mt-3 mb-5" method="post">
     <section class="mb-4">
         <h2>Add Painting</h2>
         <p>Required fields are followed by <span aria-label="required">*</span>.</p>
@@ -9,7 +7,7 @@ echo '
             <input name="paintingName" type="text" id="paintingName" class="form-control">
         </p>
         <p class="form-group">
-            <label for="completionDate">Completion Date: (YY:MM:DD) <span aria-label="required">*</span></label>
+            <label for="completionDate">Completion Date: (YYYY:MM:DD) <span aria-label="required">*</span></label>
             <input name="completionDate" type="text" id="completionDate" class="form-control">
         </p>
         <p class="form-group">
@@ -40,5 +38,5 @@ echo '
         </p>
     </section>
 </form>
-';
+
 

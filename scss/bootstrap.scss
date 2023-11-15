@@ -1,7 +1,19 @@
 $primary:   #2A9D8F;
 $secondary: #e76f51;
-$info:      #E9C46A;
 $light:     #fae2dc;
 $dark:      #04100e;
+
+$font-family-base: 'Roboto', sans-serif !important;
+$font-family-sans-serif: 'Roboto', sans-serif !important;
+$font-family-monospace: 'Roboto', sans-serif !important;
+
+
+///*This is modifying the btn-primary colors but you could create your own .btn-something class as well*/
+//.btn-primary, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+//  color: #fff;
+//  background-color: #0495c9;
+//  border-color: #357ebd; /*set the color you want here*/
+//}
+
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';

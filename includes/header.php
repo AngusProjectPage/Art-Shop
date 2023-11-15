@@ -1,59 +1,35 @@
-<?php
-// Updates basket variable with a max of nine items
-if(isset($_GET['pId'])) {
-    $pId = $_GET['pId'];
-    if(isset($_SESSION['cart'])) {
-        $numElements = sizeof($_SESSION['cart']);
-        if($numElements < 9) {
-            $numElements = sizeof($_SESSION['cart']) + 1;
-            array_push($_SESSION['cart'], $pId);
-        }
-    }
-    else {
-        $_SESSION['cart'] = array($pId);
-        $numElements = 1;
-    }
-}
-else {
-    if(!isset($_SESSION['cart'])) {
-        $numElements = 0;
-    }
-    else {
-        $numElements = sizeof($_SESSION['cart']);
-    }
-}
-echo '
 <header class="mb-4 sticky-top">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="container  justify-content-between">
-                <a href="./index.php" class="navbar-brand text-light"><img src="./Images/logo2.png" alt="Art shop logo" width="61" height="59" class="d-inline-block align-text-center">Art Shop</a>
-                <button type="button" 
-                        data-bs-toggle="collapse" 
-                        data-bs-target="#navbarNav" 
-                        class="navbar-toggler"
-                    >
-                        <span class="navbar-toggler-icon"></span>
-                </button>
-               
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto ">
-                        <li>
-                            <a href="./basket.php" class="nav-link text-light">Basket <i class="fa-solid fa-lg fa-cart-shopping numElements"><span>'; echo $numElements; echo '</span></i></a>
-                        </li>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container  justify-content-between">
+            <a href="./index.php" class="navbar-brand text-light"><img src="./Images/logo2.png" alt="Art shop logo" width="61" height="59" class="d-inline-block align-text-center">Art Shop</a>
+            <button type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    class="navbar-toggler"
+                >
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto ">
+                    <li>
+                        <a href="./basket.php" class="nav-link text-light">Basket <i class="fa-solid fa-lg fa-cart-shopping numElements"><span><?php echo $numElements; ?></span></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./admin/admin.php" class="nav-link text-light">Admin Login</a>
+                    </li>
+                    <?php
+                    if(isset($_SESSION['cart'])) {
+                    echo '                        
                         <li class="nav-item">
-                            <a href="./admin.php" class="nav-link text-light">Admin Login</a>
-                        </li>
-                        ';
-                        if(isset($_SESSION['cart'])) {
-                        echo '                        
-                            <li class="nav-item">
-                                <a href="./destroySession.php" class="nav-link text-light">Reset Basket!</a>
-                            </li>';
-                            }
-                        echo '
-                    </ul>
-                </div>
+                            <a href="./destroySession.php" class="nav-link text-light basket-reset">Reset Basket!</a>
+                        </li>';
+                        }
+                    ?>
+                </ul>
             </div>
-        </nav>
-    </header>
-';
+        </div>
+    </nav>
+</header>
+
+

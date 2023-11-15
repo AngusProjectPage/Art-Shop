@@ -1,5 +1,3 @@
-// Inspiration from https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/
-
 // Get all the form fields
 const nameField = document.querySelector("#name");
 const phoneField = document.querySelector("#phoneNumber");
@@ -34,9 +32,14 @@ const isPostCodeValid = (input) => {
     return regularExpression.test(input);
 };
 
-const isAddressValid = (input) => {
-    const regularExpression = /^$|\d\s[a-zA-Z\s]*$/;
+const isAddress1Valid = (input) => {
+    const regularExpression = /^\d*\/?\d*\s?[a-zA-Z\s]*$/;
     return regularExpression.test(input);
+};
+
+const isAddress2Valid = (input) => {
+  const regularExpression   = /^$|\d*\/?\d*\s?|[a-zA-Z\s]*$/;
+  return regularExpression.test(input);
 };
 
 const isCityValid = (input) => {
@@ -148,8 +151,8 @@ const checkAddressLine1 = () => {
     if(!isRequired(addressLine1)) {
         displayError(addressLine1Field, 'Address Line 1 cannot be blank');
     }
-    else if(!isAddressValid(addressLine1)) {
-        displayError(addressLine1Field, 'Address has to be of a format "Number(s) space letter(s)"');
+    else if(!isAddress1Valid(addressLine1)) {
+        displayError(addressLine1Field, 'Address Line 1 has to be of a format "Number(s) space letter(s) or Number(s)/Number(s) space letters"');
     }
     else {
         displaySuccess(addressLine1Field);
@@ -161,8 +164,8 @@ const checkAddressLine1 = () => {
 const checkAddressLine2 = () => {
     let valid = false;
     const addressLine2 = addressLine2Field.value.trim();
-    if(!isAddressValid(addressLine2)) {
-        displayError(addressLine2Field, 'Address has to be of a format "Number(s) space letter(s)"');
+    if(!isAddress2Valid(addressLine2)) {
+        displayError(addressLine2Field, 'Address Line 2 has to be of a format "Number(s) space letter(s)" or "Only Letters"');
     }
     else {
         displaySuccess(addressLine2Field);

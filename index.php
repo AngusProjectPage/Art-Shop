@@ -2,43 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <?php require_once "./includes/head.php"; ?>
     <title>Art Shop</title>
 </head>
 <?php
 // Used https://www.tutorialspoint.com/php/php_file_uploading.htm for inspiration on file uploading
-// Used https://www.tutorialspoint.com/php/php_file_uploading.htm for inspiration on file uploading
-include_once "includes/conn.php";
-$postCountQuery = "SELECT * FROM art WHERE available = 1";
-$result = $conn->query($postCountQuery);
-$perPage = 12;
-if(isset($_GET['page'])) {
-    $page = $_GET['page'];
-} else {
-    $page = 1;
-}
-if($page == 1) {
-    $queryPage = 0;
-    $previousPage = 1;
-    $disabledClass1 = 'disabled';
-} else {
-    $disabledClass1 = '';
-    $previousPage = $page-1;
-    $queryPage = ($page * $perPage) - $perPage;
-}
-
-$count = $result->num_rows;
-$count = ceil($count / $perPage); // This gives the number of pages
+// Used https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/ for inspiration on form validation
+require_once "./includes/conn.php";
+require_once "./includes/page.php";
+require_once "./includes/numElements.php";
 ?>
 <body>
-    <?php include_once "includes/header.php"; ?>
+    <?php require_once "./includes/header.php"; ?>
     <main class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 h-100">
             <?php
@@ -87,24 +62,7 @@ $count = ceil($count / $perPage); // This gives the number of pages
             ?>
         </div>
     </main>
-<footer>
-    <nav aria-label="Art results navigation">
-        <?php
-            if($page < $count) {
-                $nextPage = $page + 1;
-                $disabledClass2 = '';
-            }
-            else {
-                $nextPage = $page;
-                $disabledClass2 = 'disabled';
-            }
-        ?>
-        <ul class="pagination justify-content-center pb-3">
-            <li class="page-item"><a class="page-link <?php echo $disabledClass1 ?>" href="index.php?page=<?php echo $previousPage?>">Previous</a></li>
-            <li class="page-item"><a class="page-link <?php echo $disabledClass2 ?>" href="index.php?page=<?php echo $nextPage?>">Next</a></li>
-        </ul>
-    </nav>
-</footer>
+    <?php include_once "./includes/footer.php"; ?>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
