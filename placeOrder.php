@@ -2,14 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require_once "includes/head.php"; ?>
+    <?php require_once "./includes/head.php"; ?>
     <title>Order Placed</title>
 </head>
 <?php
-include_once "includes/conn.php";
+require_once "./includes/conn.php";
+require_once "./includes/numElements.php";
 ?>
 <body>
-<?php include_once "includes/header.php"; ?>
+<?php require_once "./includes/header.php"; ?>
 <main class="container d-flex align-items-center flex-column mt-5 pt-5">
 <?php
     if($_SERVER['REQUEST_METHOD'] === 'POST') {

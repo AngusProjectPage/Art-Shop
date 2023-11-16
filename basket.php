@@ -13,7 +13,7 @@
     <?php require_once "./includes/header.php"; ?>
     <main class="container">
         <?php if (isset($_SESSION['cart'])) { ?>
-            <form id="placeOrder" action="placeOrder.php" class="mt-3 mb-5" method="post">
+            <form id="placeOrder" action="./placeOrder.php" class="mt-3 mb-5" method="post">
                 <section class="mb-5">
                     <h2>Contact Information</h2>
                     <p>Required fields are followed by <span aria-label="required">*</span>.</p>
